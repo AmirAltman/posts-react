@@ -1,4 +1,5 @@
-let host = process.env.REACT_APP_LOCAL_HOST || '';
+const SERVER_PORT = 1337;
+let host = process.env.REACT_APP_LOCAL_HOST || `http://localhost:${SERVER_PORT}`;
 const endpoints = {
     getPosts: 'posts',
     addPost: 'posts',
