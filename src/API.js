@@ -1,5 +1,4 @@
-let host = process.env.REACT_APP_LOCAL_HOST || 'http://localhost:1337';
-
+let host = process.env.REACT_APP_LOCAL_HOST || '';
 const endpoints = {
     getPosts: 'posts',
     addPost: 'posts',
