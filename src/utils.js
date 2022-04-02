@@ -1,11 +1,28 @@
 import axios from "axios";
 import API from "./API";
+import {useMutation,useQueryClient } from "react-query";
 
 export const getter = (endpoint, field, args) => {
     return async () => {
         const {data} = await axios.get(API.get(endpoint), {params: args});
         return data[field]
     }
+}
+
+export const useAddPost = () => {
+    const queryClient = useQueryClient()
+    return useMutation((post) => {
+            return axios.post(API.get('addPost'), post)
+        }, {
+            onError: (error) => {
+                console.log(`Error occurred when adding post ${error}`)
+            },
+            onSuccess: () => {
+                queryClient.invalidateQueries('posts')
+                queryClient.invalidateQueries('countPosts')
+            },
+        }
+    )
 }
 
 export const fillerPosts = [
